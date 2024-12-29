@@ -23,6 +23,12 @@
             <td>{{ item.quantity }}</td>
             <td>{{ item.total_price }} руб.</td>
             <td>
+                <a href="{% url 'decrease_quantity' item.id %}" class="btn btn-sm btn-warning">-</a>
+                {{ item.quantity }}
+                <a href="{% url 'increase_quantity' item.id %}" class="btn btn-sm btn-success">+</a>
+            </td>
+            
+            <td>
                 <a href="{% url 'remove_from_cart' item.id %}" class="btn btn-sm btn-danger">Удалить</a>
             </td>
         </tr>
@@ -36,6 +42,6 @@
 
 <div class="text-end">
     <h4>Общая сумма: {{ total }} руб.</h4>
-    <a href="#" class="btn btn-success">Перейти к оформлению</a>
+    <a href="{% url 'checkout'%}" class="btn btn-success">Перейти к оформлению</a>
 </div>
 {% endblock %}
