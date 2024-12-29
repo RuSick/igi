@@ -1,0 +1,25 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    border-radius: 0 0 10px 10px;
+}
+
+.card {
+    border-radius: 10px;
+}
+
+.table {
+    margin-top: 20px;
+}
+.cart-badge {
+    font-size: 0.7rem;
+    width: 1rem;
+    height: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}

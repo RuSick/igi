@@ -1,0 +1,7 @@
+<h1>Детали товара</h1>
+<p>Артикул: {{ product.article }}</p>
+<p>Название: {{ product.name }}</p>
+<p>Цена: {{ product.price }} руб.</p>
+<p>Поставщик: {{ product.supplier.name }}</p>
+<p>Количество: {{ product.quantity }}</p>
+<a href="{% url 'public_products' %}">Назад</a>

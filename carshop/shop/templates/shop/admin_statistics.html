@@ -1,0 +1,39 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}Статистика{% endblock %}
+
+{% block content %}
+<div class="card shadow">
+    <div class="card-header text-white bg-primary">
+        <h2 class="h4">Общая статистика</h2>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Метрика</th>
+                    <th>Значение</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Всего товаров</td>
+                    <td>{{ total_products }}</td>
+                </tr>
+                <tr>
+                    <td>Всего поставщиков</td>
+                    <td>{{ total_suppliers }}</td>
+                </tr>
+                <tr>
+                    <td>Всего продаж</td>
+                    <td>{{ total_sales }}</td>
+                </tr>
+                <tr>
+                    <td>Общая выручка</td>
+                    <td>{{ total_revenue }} руб.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

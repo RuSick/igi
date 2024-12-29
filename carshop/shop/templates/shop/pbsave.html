@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список товаров</title>
+</head>
+<body>
+    <h1>Список товаров</h1>
+
+    <!-- Форма фильтрации -->
+    <form method="get">
+        <label for="min_price">Минимальная цена:</label>
+        <input type="number" id="min_price" name="min_price" step="0.01" placeholder="0" value="{{ request.GET.min_price }}">
+
+        <label for="max_price">Максимальная цена:</label>
+        <input type="number" id="max_price" name="max_price" step="0.01" placeholder="0" value="{{ request.GET.max_price }}">
+
+        <button type="submit">Фильтровать</button>
+    </form>
+
+    <!-- Отображение товаров -->
+    <ul>
+        {% for product in products %}
+            <li>
+                <a href="{% url 'product_detail' product.pk %}">{{ product.name }}</a>
+                - {{ product.price }} руб.
+                <a href="{% url 'product_update' product.pk %}">Редактировать</a>
+                <a href="{% url 'product_delete' product.pk %}">Удалить</a>
+            </li>
+        {% endfor %}
+        <a href="{% url 'product_create' %}">Создать</a>
+    </ul>
+
+    <!-- Сообщение, если товаров нет -->
+    {% if not products %}
+        <p>Нет товаров, удовлетворяющих условиям фильтрации.</p>
+    {% endif %}
+</body>
+</html>
