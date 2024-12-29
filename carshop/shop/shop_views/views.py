@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.db.models import Sum
+from django.core.paginator import Paginator
 
 from ..forms import ProductForm
 from ..models import Product, Supplier, Sale, Cart, Category
@@ -47,12 +48,17 @@ def public_products_view(request):
     if category_id:
         products = products.filter(category_id=category_id)
 
-    # Возврат шаблона с контекстом
+    paginator = Paginator(products, 10)  # Показывать 10 товаров на странице
+    page_number = request.GET.get('page')  # Номер текущей страницы из параметра 'page'
+    page_obj = paginator.get_page(page_number)  # Получение данных для текущей страницы
+
+    # Возврат шаблона с контекстом 
     return render(request, 'shop/public_products.html', {
         'products': products,
         'min_price': min_price,
         'max_price': max_price,
         'selected_category': int(category_id) if category_id else None,
+        'page_obj': page_obj,
     })
 
 #товары crud
@@ -87,3 +93,5 @@ def product_delete(request, pk):
         product.delete()
         return redirect('public_products')
     return render(request, 'shop/product_confirm_delete.html', {'product': product})
+
+
